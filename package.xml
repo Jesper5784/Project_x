@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>test_pkg</name>
+  <version>0.0.0</version>
+  <description>The test_pkg package</description>
+
+ 
+  <maintainer email="jkjar18@student.aau.dk">Jesper Mortensen</maintainer>
+
+  <license>MIT</license>
+  
+  <author email="jkjar18@student.aau.dk">Jesper Mortensen</author> 
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+
+
+  <export>
+  
+
+  </export>
+</package>
