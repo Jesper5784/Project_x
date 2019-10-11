@@ -1,40 +1,24 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
 
 int main(int argc, char *argv[])
 {
+    ros::init(argc, argv, "roundround");
 
-    srand (time(NULL)); //Initialize the random number generator
+    ros::NodeHandle n; 
+    ros::Publisher cmd_vel_pub = n. advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1);
 
-    int secretNum = 7;
-    int guess;
-    int guessCount = 0;
-    int guessLimit = 4;
-    bool outOfGuesses = false;
+    geometry_msgs::Twist cmd_vel_message;
+    cmd_vel_message.angular.z = 1.0;
+    cmd_vel_message.linear.x = 1.0;
 
-    secretNum = rand() % 10+1;
-
-    cout << "The secret number is between 1-10\n";
-
-    while(secretNum != guess && !outOfGuesses){
-
-        if(guessCount<guessLimit){
-
-        cout << "Enter guess: ";
-        cin >> guess;
-        guessCount++;
-
-        } else {
-            outOfGuesses = true;
-        }
-
+    ros::Rate loop_rate(10);
+    while (ros::ok())
+    {
+        cmd_vel_pub.publish(cmd_vel_message);
+        loop_rate.sleep();
     }
 
-    if(outOfGuesses){
-        cout << "You Lose!";
-    } else {
-        cout << "You Win!";
-    }
 
+    return 0;
 }
